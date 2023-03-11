@@ -8,8 +8,13 @@
       </div>
   
       <div class="form-group">
-        <label for="image">Image</label>
-        <input type="text" class="form-control" id="image" formControlName="image">
+        <div>
+          <label for="image">Image:</label>
+          <input type="file" id="image" (change)="onFileChange($event)">
+          <div *ngIf="image">
+            <img [src]="image" alt="Selected image">
+          </div>
+        </div>
       </div>
   
       <div class="form-group">

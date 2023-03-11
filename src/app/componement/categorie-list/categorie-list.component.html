@@ -1,0 +1,11 @@
+<ul>
+    <li *ngFor="let categorie of categories">
+      <img [src]="categorie.image" alt="{{ categorie.nom }}" />
+      <h3>{{ categorie.nom }}</h3>
+      <ul>
+        <li *ngFor="let sousCategorie of categorie.souscategories">
+          {{ sousCategorie.nom }}
+        </li>
+      </ul>
+    </li>
+  </ul>

@@ -14,6 +14,7 @@ import { AuthGuard } from './_services/auth.guard';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateCategoryComponent } from './componement/create-category/create-category.component';
 import { SousCategoryCreateComponent } from './componement/sous-category-create/sous-category-create.component';
+import { CategorieListComponent } from './componement/categorie-list/categorie-list.component';
 
 
 
@@ -31,9 +32,10 @@ const routes: Routes = [
 
 
 
-  { path: 'admin', component: BoardAdminComponent , canActivate: [AuthGuard] },
+  { path: 'admin', component: BoardAdminComponent  },
   {path:'add',component:CreateCategoryComponent},
   {path:'add1',component:SousCategoryCreateComponent},
+  {path:'all',component:CategorieListComponent},
 
 
 

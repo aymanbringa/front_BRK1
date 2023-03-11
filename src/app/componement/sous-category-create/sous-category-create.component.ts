@@ -16,6 +16,8 @@ export class SousCategoryCreateComponent {
   categories!: Categorie[];
   sousCategorieForm!: FormGroup;
   errorMessage!: string;
+  image: string | null = null;
+
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -65,7 +67,18 @@ export class SousCategoryCreateComponent {
       }
     );
   }
-  
+  onFileChange(event: Event) {
+    const reader = new FileReader();
+    const target = event.target as HTMLInputElement;
+    if (target?.files && target?.files?.length) {
+      const filesArray = Array.from(target.files);
+      const [file] = filesArray;
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.image = reader.result as string;
+      };
+    }
+  }
   
   
 
