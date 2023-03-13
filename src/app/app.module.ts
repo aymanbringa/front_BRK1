@@ -23,6 +23,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreateCategoryComponent } from './componement/create-category/create-category.component';
 import { SousCategoryCreateComponent } from './componement/sous-category-create/sous-category-create.component';
 import { CategorieListComponent } from './componement/categorie-list/categorie-list.component';
+import { Header1Component } from './header1/header1.component';
 
 
 
@@ -46,7 +47,8 @@ import { CategorieListComponent } from './componement/categorie-list/categorie-l
     ContactComponent,
      CreateCategoryComponent,
      SousCategoryCreateComponent,
-     CategorieListComponent
+     CategorieListComponent,
+     Header1Component,
 
 
   ],

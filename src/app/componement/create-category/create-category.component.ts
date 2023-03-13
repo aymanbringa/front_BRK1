@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Header1Component } from 'src/app/header1/header1.component';
 import { Categorie } from 'src/app/model/categorie';
 import { CategorieService } from 'src/app/_services/categorie.service';
 
@@ -8,7 +9,8 @@ import { CategorieService } from 'src/app/_services/categorie.service';
 @Component({
   selector: 'app-create-category',
   templateUrl: './create-category.component.html',
-  styleUrls: ['./create-category.component.css']
+
+  styleUrls: ['./create-category.component.css','./bootstrap.min.css','./style1.css','./style.css',  './fontawesome-all.css', './chartist.css','./morris.css','./c3.css','./flag-icon.min.css'],
 })
 export class CreateCategoryComponent {
   categorieForm!: FormGroup;
