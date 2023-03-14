@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Header1Component } from 'src/app/header1/header1.component';
 import { Categorie } from 'src/app/model/categorie';
 import { CategorieService } from 'src/app/_services/categorie.service';
 

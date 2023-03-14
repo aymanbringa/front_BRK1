@@ -15,7 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CreateCategoryComponent } from './componement/create-category/create-category.component';
 import { SousCategoryCreateComponent } from './componement/sous-category-create/sous-category-create.component';
 import { CategorieListComponent } from './componement/categorie-list/categorie-list.component';
-import { Header1Component } from './header1/header1.component';
+import { CategoryEditComponent } from './componement/category-edit/category-edit.component';
 
 
 
@@ -30,6 +30,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
+  {path:'edit',component:CategoryEditComponent},
 
 
 
@@ -37,7 +38,6 @@ const routes: Routes = [
   {path:'add',component:CreateCategoryComponent},
   {path:'add1',component:SousCategoryCreateComponent},
   {path:'all',component:CategorieListComponent},
-  {path:'header1',component:Header1Component},
 
 
 

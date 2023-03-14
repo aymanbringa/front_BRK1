@@ -26,12 +26,12 @@ export class CategorieService {
   }
 
   createCategorie(categorie: Categorie): Observable<Categorie> {
-    console.log('jhgsf');
     return this.http.post<Categorie>(this.apiUrl, categorie, this.httpOptions);
   }
 
   updateCategorie(categorie: Categorie): Observable<Categorie> {
     const url = `${this.apiUrl}/${categorie.id}`;
+    console.log('edit service');
     return this.http.put<Categorie>(url, categorie, this.httpOptions);
   }
 
