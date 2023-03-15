@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { Categorie } from '../model/categorie';
 
 @Injectable({
@@ -28,12 +28,11 @@ export class CategorieService {
   createCategorie(categorie: Categorie): Observable<Categorie> {
     return this.http.post<Categorie>(this.apiUrl, categorie, this.httpOptions);
   }
-
-  updateCategorie(categorie: Categorie): Observable<Categorie> {
+  edit(categorie: Categorie): Observable<Categorie> {
     const url = `${this.apiUrl}/${categorie.id}`;
-    console.log('edit service');
-    return this.http.put<Categorie>(url, categorie, this.httpOptions);
+    return this.http.put<Categorie>(url, categorie);
   }
+  
 
   deleteCategorie(id: number): Observable<void> {
     const url = `${this.apiUrl}/${id}`;

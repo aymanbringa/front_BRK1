@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Categorie } from 'src/app/model/categorie';
 import { CategorieService } from 'src/app/_services/categorie.service';
 
@@ -14,15 +14,15 @@ export class CategoryEditComponent {
   categorieForm!: FormGroup;
   submitted = false;
   image: string | null = null;
-  selectedCategory!: Categorie;
-  @Output() saveCategory = new EventEmitter<Categorie>();
-  @Input() category!: Categorie;
+  saveCategory: any;
 
 
 
 
 
   constructor(private formBuilder: FormBuilder, private categorieService: CategorieService,private route: ActivatedRoute, private router: Router) { }
+  id!: number;
+  category!: Categorie;
 
   ngOnInit(): void {
     this.categorieForm = this.formBuilder.group({
@@ -30,28 +30,35 @@ export class CategoryEditComponent {
       image: ['', Validators.required]
       
     });
+    
 
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = +params['id'];
+        this.categorieService.getCategorieById(this.id).subscribe(
+          category => this.category = category,
+          error => console.error('Error fetching category:', error)
+        );
+      }
+    );
+  
     
   }
-
+  editCategorie() {
+    this.categorieService.edit(this.category).subscribe(
+      updatedCategorie => {
+        console.log('Categorie updated successfully:', updatedCategorie);
+        // Optionally, you can redirect the user to a different page or update the list of categories
+      },
+      error => {
+        console.error('Error updating categorie:', error);
+        // Optionally, you can display an error message to the user or redirect them to an error page
+      }
+    );
+  }
   get f() { return this.categorieForm.controls; }
 
-  onSubmit() {
-    this.submitted = true;
-   
-    const image = this.image ? this.image : '';
-    const categorie = new Categorie(
-      this.f['nom'].value,
-      image
-    );
-    this.categorieService.createCategorie(categorie).subscribe(() => {
-      this.router.navigate(['/categories']);
-    });
-    this.saveCategory.emit(this.category);
 
-    console.log(categorie);
-
-  }
   
 
   onFileChange(event: Event) {
@@ -73,19 +80,7 @@ export class CategoryEditComponent {
     this.image = null;
     this.categorieForm.patchValue({ image: null });
   }
-  editCategory(category: Categorie) {
-    this.categorieService.getCategorieById(category.id).subscribe(
-      (response) => {
-        this.selectedCategory = response;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
-  editCateg(category: Categorie) {
-    this.selectedCategory = category;
-  }
+
 
 
 

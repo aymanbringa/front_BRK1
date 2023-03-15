@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 })
 export class CategorieListComponent implements OnInit{
   categories: Categorie[] = [];
-  selectedCategory!: Categorie;
+  selectedCategorie: Categorie | undefined ;
+  showEditForm =false;
 
   constructor(private categorieService: CategorieService, private router: Router) { }
 
@@ -34,8 +35,7 @@ export class CategorieListComponent implements OnInit{
     });
   }
   editCategory(category: Categorie) {
-    this.selectedCategory = category;
-    this.router.navigate(['edit']);
+    this.router.navigate(['/category-edit', category.id]);
   }
 
 }

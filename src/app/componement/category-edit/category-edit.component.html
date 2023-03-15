@@ -454,10 +454,10 @@
                   <div class="card ">
                       <div class="card-header text-center"><a href="../index.html"><img class="logo-img" src="../assets/images/logo.png" alt="logo"></a><span class="splash-description">Please enter your category information.</span></div>
                       <div class="card-body">
-                          <form [formGroup]="categorieForm" (ngSubmit)="onSubmit()">
+                          <form [formGroup]="categorieForm" (ngSubmit)="editCategorie()">
                               <div class="form-group">
                                   <label for="nom">Name:</label>
-                                  <input class="form-control form-control" value="{{category.nom}}"[(ngModel)]="category.nom" type="text" formControlName="nom" autocomplete="off">
+                                  <input class="form-control form-control" [(ngModel)]="category.nom" type="text" formControlName="nom" autocomplete="off">
                                   <div *ngIf="f['nom'].errors && (submitted || f['nom'].touched)">
                                     <div *ngIf="f['nom'].errors['required']">Name is required.</div>
                                   </div>

@@ -455,7 +455,7 @@
                                         <td _ngcontent-voc-c58="">{{category.nom}}</td>
                                         <td _ngcontent-voc-c58="">{{category.id}} </td>
                                         <td _ngcontent-voc-c58="">    <button (click)="deleteCategory(category)">Delete</button></td>
-                                        <td _ngcontent-voc-c58=""> <button mat-icon-button color="primary" (click)="editCategory(category)">Edit</button></td>
+                                        <td _ngcontent-voc-c58=""> <a [routerLink]="['/edit', category.id]">Edit</a></td>
 
 
                                     </tr>
@@ -466,6 +466,8 @@
                                     </tr>
                                 </tbody>
                             </table>
+
+                            
 
                         </div>
                     </div>
