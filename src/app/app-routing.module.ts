@@ -30,14 +30,14 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
-  {path:'edit/:id',component:CategoryEditComponent},
+  {path:'categories/edit/:id',component:CategoryEditComponent},
 
 
 
   { path: 'admin', component: BoardAdminComponent  },
-  {path:'add',component:CreateCategoryComponent},
+  {path:'categories/create',component:CreateCategoryComponent},
   {path:'add1',component:SousCategoryCreateComponent},
-  {path:'all',component:CategorieListComponent},
+  {path:'categories',component:CategorieListComponent},
 
 
 

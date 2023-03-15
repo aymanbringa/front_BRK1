@@ -454,28 +454,28 @@
                   <div class="card ">
                       <div class="card-header text-center"><a href="../index.html"><img class="logo-img" src="../assets/images/logo.png" alt="logo"></a><span class="splash-description">Please enter your category information.</span></div>
                       <div class="card-body">
-                          <form [formGroup]="categorieForm" (ngSubmit)="editCategorie()">
-                              <div class="form-group">
-                                  <label for="nom">Name:</label>
-                                  <input class="form-control form-control" [(ngModel)]="category.nom" type="text" formControlName="nom" autocomplete="off">
-                                  <div *ngIf="f['nom'].errors && (submitted || f['nom'].touched)">
-                                    <div *ngIf="f['nom'].errors['required']">Name is required.</div>
-                                  </div>
+                        <form [formGroup]="categorieForm" (ngSubmit)="editCategorie()">
+                            <div class="form-group">
+                              <label for="nom">Name:</label>
+                              <input class="form-control form-control" type="text" formControlName="nom" autocomplete="off">
+                              <div *ngIf="f['nom'].errors && (submitted || f['nom'].touched)">
+                                <div *ngIf="f['nom'].errors['required']">Name is required.</div>
                               </div>
-                              <div class="form-group">
-                                  <label for="image">Image:</label>
-                                  <input class="form-control form-control-lg" [(ngModel)]="category.image" id="image" type="file" (change)="onFileChange($event)">
-                                  <div *ngIf="image">
-                                    <img [src]="image" alt="Selected image" height="200" width="300">
-                                    <button type="button" (click)="clearImage()">Clear</button>
-                                  </div>
-                                  <div *ngIf="f['image'].errors && (submitted || f['image'].touched)">
-                                    <div *ngIf="f['image'].errors['required']">Image is required.</div>
-                                  </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="image">Image:</label>
+                              <input class="form-control form-control-lg" id="image" type="file" (change)="onImageChange($event)">
+                              <div *ngIf="image">
+                                <img [src]="image" alt="Selected image" height="200" width="300">
+                                <button type="button" (click)="clearImage()">Clear</button>
                               </div>
-                       
-                              <button type="submit" class="btn btn-primary btn-lg btn-block">ADD</button>
+                              <div *ngIf="f['image'].errors && (submitted || f['image'].touched)">
+                                <div *ngIf="f['image'].errors['required']">Image is required.</div>
+                              </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">EDIT</button>
                           </form>
+                          
                       </div>
                     </div>
                 

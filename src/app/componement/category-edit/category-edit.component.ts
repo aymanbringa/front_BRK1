@@ -13,8 +13,12 @@ export class CategoryEditComponent {
 
   categorieForm!: FormGroup;
   submitted = false;
-  image: string | null = null;
+  image: any;
   saveCategory: any;
+  selectedCategoryImage!: string;
+  imageUrl: string = '';
+
+
 
 
 
@@ -28,30 +32,36 @@ export class CategoryEditComponent {
     this.categorieForm = this.formBuilder.group({
       nom: ['', Validators.required],
       image: ['', Validators.required]
-      
     });
-    
-
+  
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
         this.categorieService.getCategorieById(this.id).subscribe(
-          category => this.category = category,
+          category => {
+            this.category = category;
+            this.categorieForm.patchValue({
+              nom: category.nom,
+              image: category.image
+            });
+          },
           error => console.error('Error fetching category:', error)
         );
       }
     );
-  
-    
   }
   editCategorie() {
     this.categorieService.edit(this.category).subscribe(
       updatedCategorie => {
         console.log('Categorie updated successfully:', updatedCategorie);
+        this.router.navigate(['/categories']);
+
         // Optionally, you can redirect the user to a different page or update the list of categories
       },
       error => {
         console.error('Error updating categorie:', error);
+        this.router.navigate(['/categories']);
+
         // Optionally, you can display an error message to the user or redirect them to an error page
       }
     );
@@ -61,24 +71,30 @@ export class CategoryEditComponent {
 
   
 
-  onFileChange(event: Event) {
+  onImageChange(event: any) {
+    const file = event.target.files[0];
     const reader = new FileReader();
-    const target = event.target as HTMLInputElement;
-    if (target?.files && target?.files?.length) {
-      const filesArray = Array.from(target.files);
-      const [file] = filesArray;
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.image = reader.result as string;
-      };
-    }
+    reader.onload = () => {
+      const imageControl = this.categorieForm.get('image');
+      if (imageControl) {
+        imageControl.setValidators([]);
+        imageControl.updateValueAndValidity();
+
+      }
+      this.image = reader.result;
+    };
+    reader.readAsDataURL(file);
   }
+
   
   
 
   clearImage() {
     this.image = null;
     this.categorieForm.patchValue({ image: null });
+  }
+  update(selectedCategory: Categorie) {
+    this.selectedCategoryImage = selectedCategory.image;
   }
 
 

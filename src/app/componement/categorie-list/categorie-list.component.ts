@@ -13,6 +13,7 @@ export class CategorieListComponent implements OnInit{
   categories: Categorie[] = [];
   selectedCategorie: Categorie | undefined ;
   showEditForm =false;
+selectedCategoryImage: any;
 
   constructor(private categorieService: CategorieService, private router: Router) { }
 

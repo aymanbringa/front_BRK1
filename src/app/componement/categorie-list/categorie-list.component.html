@@ -440,7 +440,11 @@
                                     <th _ngcontent-voc-c58="" class="border-0">Image</th>
                                     <th _ngcontent-voc-c58="" class="border-0">Category Name</th>
                                     <th _ngcontent-voc-c58="" class="border-0">Category Id</th>
-                                    <th _ngcontent-voc-c58="" class="border-0">Category Id</th>
+                                    <th _ngcontent-voc-c58="" class="border-0">Delete Category</th>
+                                    <th _ngcontent-voc-c58="" class="border-0">Edit Category</th>
+                                    <th _ngcontent-voc-c58="" class="border-0">Show Category</th>
+
+
 
                                 </tr>
                                 </thead>
@@ -455,7 +459,8 @@
                                         <td _ngcontent-voc-c58="">{{category.nom}}</td>
                                         <td _ngcontent-voc-c58="">{{category.id}} </td>
                                         <td _ngcontent-voc-c58="">    <button (click)="deleteCategory(category)">Delete</button></td>
-                                        <td _ngcontent-voc-c58=""> <a [routerLink]="['/edit', category.id]">Edit</a></td>
+                                        <td _ngcontent-voc-c58=""> <button type="button"  [routerLink]="['/categories/edit', category.id]">Edit</button>
+                                        </td>
 
 
                                     </tr>
