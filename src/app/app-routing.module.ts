@@ -12,10 +12,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { AuthGuard } from './_services/auth.guard';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CreateCategoryComponent } from './componement/create-category/create-category.component';
-import { SousCategoryCreateComponent } from './componement/sous-category-create/sous-category-create.component';
-import { CategorieListComponent } from './componement/categorie-list/categorie-list.component';
-import { CategoryEditComponent } from './componement/category-edit/category-edit.component';
+import { CreateCategoryComponent } from './componement/categorie/create-category/create-category.component';
+import { CategorieListComponent } from './componement/categorie/categorie-list/categorie-list.component';
+import { CategoryEditComponent } from './componement/categorie/category-edit/category-edit.component';
+import { SousCategoryCreateComponent } from './componement/sous-categories/sous-category-create/sous-category-create.component';
+import { SousCategoriesListComponent } from './componement/sous-categories/sous-categories-list/sous-categories-list.component';
 
 
 
@@ -30,14 +31,14 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
+  {path:'categories',component:CategorieListComponent},
+  {path:'categories/create',component:CreateCategoryComponent},
   {path:'categories/edit/:id',component:CategoryEditComponent},
-
+  {path:'sous-categories',component:SousCategoriesListComponent},
 
 
   { path: 'admin', component: BoardAdminComponent  },
-  {path:'categories/create',component:CreateCategoryComponent},
   {path:'add1',component:SousCategoryCreateComponent},
-  {path:'categories',component:CategorieListComponent},
 
 
 

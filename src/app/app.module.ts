@@ -20,10 +20,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { RouterModule, Routes } from '@angular/router';
-import { CreateCategoryComponent } from './componement/create-category/create-category.component';
-import { SousCategoryCreateComponent } from './componement/sous-category-create/sous-category-create.component';
-import { CategorieListComponent } from './componement/categorie-list/categorie-list.component';
-import { CategoryEditComponent } from './componement/category-edit/category-edit.component';
+import { CreateCategoryComponent } from './componement/categorie/create-category/create-category.component';
+import { CategorieListComponent } from './componement/categorie/categorie-list/categorie-list.component';
+import { CategoryEditComponent } from './componement/categorie/category-edit/category-edit.component';
+import { SousCategoryCreateComponent } from './componement/sous-categories/sous-category-create/sous-category-create.component';
+import { SousCategoriesListComponent } from './componement/sous-categories/sous-categories-list/sous-categories-list.component';
+import { SousCategoriesEditComponent } from './componement/sous-categories/sous-categories-edit/sous-categories-edit.component';
 
 
 
@@ -49,6 +51,8 @@ import { CategoryEditComponent } from './componement/category-edit/category-edit
      SousCategoryCreateComponent,
      CategorieListComponent,
      CategoryEditComponent,
+     SousCategoriesListComponent,
+     SousCategoriesEditComponent,
 
 
   ],
