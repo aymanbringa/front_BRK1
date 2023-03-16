@@ -13,7 +13,7 @@ export class CategoryEditComponent {
 
   categorieForm!: FormGroup;
   submitted = false;
-  image: any;
+  image: string | null = null;
   saveCategory: any;
   selectedCategoryImage!: string;
   imageUrl: string = '';
@@ -47,8 +47,9 @@ export class CategoryEditComponent {
   }
 
   editCategorie() {
+    const image = this.image ? this.image : '';
     this.category.nom = this.categorieForm.value.nom;
-    this.category.image = this.categorieForm.value.image;
+    this.category.image = image;
     this.categorieService.edit(this.category).subscribe(
       updatedCategorie => {
         console.log('Category updated successfully:', updatedCategorie);
@@ -61,22 +62,7 @@ export class CategoryEditComponent {
     );
   }
 
-  onImageChange(event: any) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      const imageControl = this.categorieForm.get('image')?.value;
-      console.log(this.categorieForm.get('image'))
-      if (this.test) {
-        imageControl.setValidators([]);
-        imageControl.updateValueAndValidity();
-        // Mettre à jour la valeur du champ "image" dans le formulaire
-        imageControl.setValue(file);
-      }
-      this.image = reader.result;
-    };
-    reader.readAsDataURL(file);
-  }
+
   onFileChange(event: Event) {
     const reader = new FileReader();
     const target = event.target as HTMLInputElement;
