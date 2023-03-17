@@ -17,7 +17,7 @@ export class SousCategoryCreateComponent {
   sousCategorieForm!: FormGroup;
   errorMessage!: string;
   image: string | null = null;
-
+  
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -47,10 +47,11 @@ export class SousCategoryCreateComponent {
   onSubmit(): void {
 
 
+    const image = this.image ? this.image : '';
 
     const sousCategorie: SousCategories = {
       nom: this.sousCategorieForm.get('nom')?.value,
-      image: this.sousCategorieForm.get('image')?.value,
+      image,
       categorie: { id: this.sousCategorieForm.get('categorie')?.value } as Categorie,
       id:null
     };

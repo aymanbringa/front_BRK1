@@ -9,10 +9,10 @@ import { SousCategoriesService } from 'src/app/_services/sous-categories.service
   styleUrls: ['./sous-categories-list.component.css','./bootstrap.min.css','./style1.css','./style.css',  './fontawesome-all.css', './chartist.css','./morris.css','./c3.css','./flag-icon.min.css'],
 })
 export class SousCategoriesListComponent {
-  SousCategories:SousCategories[]=[];
+  souscategories:SousCategories[]=[];
   selectedCategorie: SousCategories | undefined ;
   showEditForm =false;
-  selectedCategoryImage: any;
+  selectedSousCategoryImage: any;
 
   constructor(private souscategorieService: SousCategoriesService, private router: Router) { }
 
@@ -23,15 +23,18 @@ export class SousCategoriesListComponent {
   getAllSousCategories(): void {
     this.souscategorieService.getAllSousCategories()
       .subscribe((souscategories: SousCategories[]) => {
-        this.SousCategories = souscategories;
+        this.souscategories = souscategories;
+        console.log(this.souscategories)
       });
+          
+
   }
 
   deleteSousCategory(souscategory: SousCategories) {
     this.souscategorieService.deleteSousCategorie(souscategory.id).subscribe(() => {
       // Remove the deleted category from the list
-      const index = this.SousCategories.indexOf(souscategory);
-      this.SousCategories.splice(index, 1);
+      const index = this.souscategories.indexOf(souscategory);
+      this.souscategories.splice(index, 1);
     });
   }
   editCategory(souscategory: SousCategories) {

@@ -30,9 +30,9 @@ export class SousCategoriesService {
     return this.http.post<SousCategories>(this.apiUrl, categorie, this.httpOptions);
   }
 
-  updateSousCategorie(categorie: SousCategories): Observable<SousCategories> {
-    const url = `${this.apiUrl}/${categorie.id}`;
-    return this.http.put<SousCategories>(url, categorie, this.httpOptions);
+  editSousCategorie(souscategorie: SousCategories): Observable<SousCategories> {
+    const url = `${this.apiUrl}/${souscategorie.id}`;
+    return this.http.put<SousCategories>(url, souscategorie);
   }
 
   deleteSousCategorie(id: number): Observable<void> {

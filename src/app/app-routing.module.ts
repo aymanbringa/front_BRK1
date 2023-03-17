@@ -17,6 +17,7 @@ import { CategorieListComponent } from './componement/categorie/categorie-list/c
 import { CategoryEditComponent } from './componement/categorie/category-edit/category-edit.component';
 import { SousCategoryCreateComponent } from './componement/sous-categories/sous-category-create/sous-category-create.component';
 import { SousCategoriesListComponent } from './componement/sous-categories/sous-categories-list/sous-categories-list.component';
+import { SousCategoriesEditComponent } from './componement/sous-categories/sous-categories-edit/sous-categories-edit.component';
 
 
 
@@ -35,10 +36,11 @@ const routes: Routes = [
   {path:'categories/create',component:CreateCategoryComponent},
   {path:'categories/edit/:id',component:CategoryEditComponent},
   {path:'sous-categories',component:SousCategoriesListComponent},
+  {path:'sous-categories/create',component:SousCategoryCreateComponent},
+  {path:'sous-categories/edit/:id',component:SousCategoriesEditComponent},
 
 
   { path: 'admin', component: BoardAdminComponent  },
-  {path:'add1',component:SousCategoryCreateComponent},
 
 
 

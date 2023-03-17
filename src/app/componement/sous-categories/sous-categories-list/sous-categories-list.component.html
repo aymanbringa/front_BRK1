@@ -449,17 +449,17 @@
                                 </tr>
                                 </thead>
                                 <tbody _ngcontent-voc-c58="">
-                                    <tr *ngFor="let souscategory of SousCategories;let i = index">
+                                    <tr *ngFor="let souscategory of souscategories;let i = index">
                                         <td _ngcontent-voc-c58="">{{i+1}}</td>
                                         <td _ngcontent-voc-c58="">
                                             <div _ngcontent-voc-c58="" class="m-r-10">
-                                                <img _ngcontent-voc-c58="" src="{{souscategory.image}}" alt="user" width="45" class="rounded">
+                                                <img _ngcontent-voc-c58="" src={{souscategory.image}} alt="user" width="45" class="rounded">
                                             </div>
                                         </td>
                                         <td _ngcontent-voc-c58="">{{souscategory.nom}}</td>
                                         <td _ngcontent-voc-c58="">{{souscategory.id}} </td>
-                                        <td _ngcontent-voc-c58="">    <button (click)="deleteSousCategory(souscategory)">Delete</button></td>
-                                        <td _ngcontent-voc-c58=""> <button type="button"  [routerLink]="['/categories/edit', souscategory.id]">Edit</button> </td>
+                                        <td _ngcontent-voc-c58=""> <button (click)="deleteSousCategory(souscategory)">Delete</button></td>
+                                        <td _ngcontent-voc-c58=""> <button type="button"  [routerLink]="['/sous-categories/edit', souscategory.id]">Edit</button> </td>
                                         <td _ngcontent-voc-c58="">{{souscategory.categorie.id}} </td>
 
 
