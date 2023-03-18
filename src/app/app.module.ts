@@ -26,6 +26,9 @@ import { CategoryEditComponent } from './componement/categorie/category-edit/cat
 import { SousCategoryCreateComponent } from './componement/sous-categories/sous-category-create/sous-category-create.component';
 import { SousCategoriesListComponent } from './componement/sous-categories/sous-categories-list/sous-categories-list.component';
 import { SousCategoriesEditComponent } from './componement/sous-categories/sous-categories-edit/sous-categories-edit.component';
+import { CreateProduitComponent } from './componement/produit/create-produit/create-produit.component';
+import { EditProduitComponent } from './componement/produit/edit-produit/edit-produit.component';
+import { ListProduitComponent } from './componement/produit/list-produit/list-produit.component';
 
 
 
@@ -53,6 +56,9 @@ import { SousCategoriesEditComponent } from './componement/sous-categories/sous-
      CategoryEditComponent,
      SousCategoriesListComponent,
      SousCategoriesEditComponent,
+     CreateProduitComponent,
+     EditProduitComponent,
+     ListProduitComponent,
 
 
   ],

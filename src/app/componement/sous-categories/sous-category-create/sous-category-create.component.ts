@@ -59,7 +59,7 @@ export class SousCategoryCreateComponent {
 
     this.sousCategorieService.createSousCategorie(sousCategorie).subscribe(
       (createdSousCategorie: SousCategories) => {
-        this.router.navigate(['/sous-categories', createdSousCategorie.id]);
+        this.router.navigate(['/sous-categories']);
       },
       (error) => {
         this.errorMessage = error.message;

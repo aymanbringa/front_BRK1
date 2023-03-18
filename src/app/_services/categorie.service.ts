@@ -33,6 +33,7 @@ export class CategorieService {
     return this.http.put<Categorie>(url, categorie);
   }
   
+  
 
   deleteCategorie(id: number): Observable<void> {
     const url = `${this.apiUrl}/${id}`;

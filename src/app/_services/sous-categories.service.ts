@@ -9,7 +9,6 @@ import { SousCategories } from '../model/sous-categories';
 export class SousCategoriesService {
 
   private apiUrl = 'http://localhost:8080/api/auth/sous-categories';
-
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -26,7 +25,6 @@ export class SousCategoriesService {
   }
 
   createSousCategorie(categorie: SousCategories): Observable<SousCategories> {
-    console.log('jhgsf');
     return this.http.post<SousCategories>(this.apiUrl, categorie, this.httpOptions);
   }
 
@@ -38,5 +36,11 @@ export class SousCategoriesService {
   deleteSousCategorie(id: number): Observable<void> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<void>(url);
+  }
+
+  getSousCategoriesByCategorieId(categorieId: number): Observable<SousCategories[]> {
+    const url = `${this.apiUrl}/ByID/${categorieId}`;
+    console.log('asba')
+    return this.http.get<SousCategories[]>(url);
   }
 }
