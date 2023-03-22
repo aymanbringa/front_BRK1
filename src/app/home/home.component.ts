@@ -1,10 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Produit } from '../model/produit';
+import { CartitemService } from '../_services/cartitem.service';
+import { ProduitService } from '../_services/produit.service';
+import { StorageService } from '../_services/storage.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  produits: Produit[] = [];
+  currentUser: any;
 
+
+  constructor(private produitService: ProduitService, private cartService: CartitemService,private storageService: StorageService) {}
+  
+  ngOnInit(): void {
+    this.getAllProduit();
+  }
+
+  getAllProduit(): void {
+    this.produitService.getAllProduit()
+      .subscribe((produits: Produit[]) => {
+        this.produits = produits;
+        console.log(this.produits); // fixed the console.log issue
+      });
+  }
+
+  addToCart(productId: number, quantity: number) {
+    this.currentUser = this.storageService.getUser();
+    const user_id = this.storageService.getUser().id;
+    console.log(this.storageService.getUser().id)
+    if (user_id) {
+      this.cartService.addToCart(productId, quantity, user_id).subscribe(() => {
+        console.log(`Product with id ${productId} added to cart!`);
+      });
+    } else {
+      console.log('User is not authenticated.');
+    }
+  }
+  
 }
