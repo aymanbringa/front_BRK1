@@ -13,17 +13,11 @@ export class CartitemService {
 
   constructor(private http: HttpClient) { }
 
-  addToCart(id: any  , quantity: number, user_id: string): Observable<any> {
-    console.log(quantity)
-    console.log(id)
-    return this.http.post(`${this.cartUrl}`, {
-      id,
-      quantity,
-      user_id
-    });
+  addToCart(userId: any, productId: any, quantity: number): Observable<any> {
+    const url = `${this.cartUrl}?userId=${userId}&productId=${productId}&quantity=${quantity}`;
+    return this.http.post(url, null, { headers: this.headers });
   }
   
-
   removeFromCart(productId: number, quantity: number): Observable<any> {
     return this.http.post<any>(`${this.cartUrl}/delete?productId=${productId}&quantity=${quantity}`, {}, {headers: this.headers});
   }

@@ -28,17 +28,18 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  addToCart(productId: number, quantity: number) {
-    this.currentUser = this.storageService.getUser();
-    const user_id = this.storageService.getUser().id;
-    console.log(this.storageService.getUser().id)
-    if (user_id) {
-      this.cartService.addToCart(productId, quantity, user_id).subscribe(() => {
+  addToCart(productId: any, quantity: number) {
+    const currentUser = this.storageService.getUser();
+    if (currentUser) {
+      const userId = currentUser.id;
+      console.log(userId);
+      this.cartService.addToCart(userId, productId, quantity).subscribe(() => {
         console.log(`Product with id ${productId} added to cart!`);
       });
     } else {
       console.log('User is not authenticated.');
     }
   }
+
   
 }
