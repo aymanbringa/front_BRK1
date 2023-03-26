@@ -1,7 +1,10 @@
-import { Produit } from "./produit";
-
 export class CartItem {
-    id:any;
-    produit!: Produit;
-    quantite!: number;
-  }
+  id!: number;
+  product!: {
+    id: number;
+    nom: string;
+    prix: number;
+    image: string;
+  };
+  quantity!: number;
+}

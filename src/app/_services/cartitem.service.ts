@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
 import { CartItem } from '../model/cartitem'; 
 
 @Injectable({
@@ -13,20 +13,35 @@ export class CartitemService {
 
   constructor(private http: HttpClient) { }
 
-  addToCart(userId: any, productId: any, quantity: number): Observable<any> {
-    const url = `${this.cartUrl}?userId=${userId}&productId=${productId}&quantity=${quantity}`;
-    return this.http.post(url, null, { headers: this.headers });
+  addToCart(productId: number, quantity: number, userId: number): Observable<any> {
+    return this.http.post<any>(`${this.cartUrl}?productId=${productId}&quantity=${quantity}&userId=${userId}`, null, { headers: this.headers });
   }
   
   removeFromCart(productId: number, quantity: number): Observable<any> {
     return this.http.post<any>(`${this.cartUrl}/delete?productId=${productId}&quantity=${quantity}`, {}, {headers: this.headers});
   }
 
-  getTotal(): Observable<number> {
-    return this.http.get<number>(`${this.cartUrl}`, {headers: this.headers});
+  getTotal(userId: number): Observable<number> {
+    return this.http.get<number>(`${this.cartUrl}?userId=${userId}`, { headers: this.headers });
   }
-
-  getCart(): Observable<CartItem> {
-    return this.http.get<CartItem>(`${this.cartContentUrl}`, {headers: this.headers});
+  
+  getCart(userId: number): Observable<CartItem[]> {
+    return this.http.get<CartItem[]>(`${this.cartUrl}?userId=${userId}`, { headers: this.headers })
+      .pipe(
+        catchError(this.handleError)
+      );
   }
+  
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occurred:', error.error.message);
+    } else {
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    return throwError(
+      'Something bad happened; please try again later.');
+  }
+  
 }
