@@ -13,7 +13,7 @@ export class CartitemService {
 
   constructor(private http: HttpClient) { }
 
-  addToCart(productId: number, quantity: number, userId: number): Observable<any> {
+  addToCart(userId: any,productId: any, quantity: number): Observable<any> {
     return this.http.post<any>(`${this.cartUrl}?productId=${productId}&quantity=${quantity}&userId=${userId}`, null, { headers: this.headers });
   }
   
@@ -25,12 +25,14 @@ export class CartitemService {
     return this.http.get<number>(`${this.cartUrl}?userId=${userId}`, { headers: this.headers });
   }
   
-  getCart(userId: number): Observable<CartItem[]> {
-    return this.http.get<CartItem[]>(`${this.cartUrl}?userId=${userId}`, { headers: this.headers })
+  getCart(userId: any): Observable<CartItem[]> {
+    console.log(userId)
+    return this.http.get<CartItem[]>(`${this.cartUrl}/?userId=${userId}`)
       .pipe(
         catchError(this.handleError)
       );
   }
+  
   
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

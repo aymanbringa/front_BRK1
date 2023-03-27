@@ -20,16 +20,15 @@ export class CartComponent implements OnInit {
     const userId = this.storageService.getUser()?.id;
     console.log('userId:', userId);
 
-    if (userId) {
+    if (userId!=null) {
+      console.log('jqshfdfsqjdhfqsjhdf')
       this.cartItemService.getCart(userId).subscribe(
         cartItems => {
           console.log(cartItems);
           this.cartItems = cartItems;
           console.log(this.cartItems);
         },
-        error => {
-          console.error('Error fetching cart:', error);
-        }
+    
       );
     }
   }

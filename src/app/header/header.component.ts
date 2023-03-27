@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../_services/auth.service';
 import { StorageService } from '../_services/storage.service';
@@ -19,6 +19,8 @@ export class HeaderComponent {
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
+  @Input() cartCount = 0;
+
 
   eventBusSub?: Subscription;
 
@@ -45,6 +47,9 @@ export class HeaderComponent {
       this.logout();
     });
   }
+  onCartCountChanged(newCount: number) {
+    this.cartCount = newCount;
+  }
 
   logout(): void {
     this.authService.logout().subscribe({
@@ -59,4 +64,5 @@ export class HeaderComponent {
       }
     });
   }
+  
 }

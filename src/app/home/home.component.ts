@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Produit } from '../model/produit';
 import { CartitemService } from '../_services/cartitem.service';
 import { ProduitService } from '../_services/produit.service';
@@ -12,7 +12,8 @@ import { StorageService } from '../_services/storage.service';
 export class HomeComponent implements OnInit {
   produits: Produit[] = [];
   currentUser: any;
-
+  cartCount = 0;
+  @Output() cartCountChange = new EventEmitter<number>();
 
   constructor(private produitService: ProduitService, private cartService: CartitemService,private storageService: StorageService) {}
   
@@ -35,11 +36,11 @@ export class HomeComponent implements OnInit {
       console.log(userId);
       this.cartService.addToCart(userId, productId, quantity).subscribe(() => {
         console.log(`Product with id ${productId} added to cart!`);
+        this.cartCount++;
+        this.cartCountChange.emit(this.cartCount);
       });
     } else {
       console.log('User is not authenticated.');
     }
   }
-
-  
 }
