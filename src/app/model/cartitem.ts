@@ -7,4 +7,5 @@ export class CartItem {
     image: string;
   };
   quantity!: number;
+  totale!:any;
 }

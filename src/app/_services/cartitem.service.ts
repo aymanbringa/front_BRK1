@@ -21,8 +21,8 @@ export class CartitemService {
     return this.http.post<any>(`${this.cartUrl}/delete?productId=${productId}&quantity=${quantity}`, {}, {headers: this.headers});
   }
 
-  getTotal(userId: number): Observable<number> {
-    return this.http.get<number>(`${this.cartUrl}?userId=${userId}`, { headers: this.headers });
+  getTotal(userId: any): Observable<number> {
+    return this.http.get<any>(`${this.cartContentUrl}?userId=${userId}`, { headers: this.headers });
   }
   
   getCart(userId: any): Observable<CartItem[]> {
@@ -32,6 +32,7 @@ export class CartitemService {
         catchError(this.handleError)
       );
   }
+  
   
   
   private handleError(error: HttpErrorResponse) {

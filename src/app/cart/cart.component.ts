@@ -10,6 +10,7 @@ import { StorageService } from '../_services/storage.service';
 })
 export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
+  totalCartValue: number = 0;
 
   constructor(
     private storageService: StorageService,
@@ -27,8 +28,13 @@ export class CartComponent implements OnInit {
           console.log(cartItems);
           this.cartItems = cartItems;
           console.log(this.cartItems);
+          this.cartItemService.getTotal(userId).subscribe(totalValue => {
+            this.totalCartValue = totalValue;
+          });
         },
-    
+        error => {
+          console.log(error);
+        }
       );
     }
   }
@@ -37,6 +43,13 @@ export class CartComponent implements OnInit {
     if (item.quantity > 1) {
       item.quantity--;
       item.product.prix = item.quantity * item.product.prix;
+      const userId = this.storageService.getUser()?.id;
+
+      this.cartItemService.getTotal(userId).subscribe(totalValue => {
+        this.totalCartValue = totalValue;
+        console.log("totale",this.totalCartValue)
+        
+      });
       this.updateCartItems(this.cartItems);
     }
   }
@@ -44,6 +57,13 @@ export class CartComponent implements OnInit {
   increaseQuantity(item: CartItem): void {
     item.quantity++;
     item.product.prix = item.quantity * item.product.prix;
+    const userId = this.storageService.getUser()?.id;
+
+    this.cartItemService.getTotal(userId).subscribe(totalValue => {
+      this.totalCartValue = totalValue;
+      console.log("totale",this.totalCartValue)
+      
+    });
     this.updateCartItems(this.cartItems);
   }
 
@@ -53,10 +73,25 @@ export class CartComponent implements OnInit {
       const index = this.cartItems.findIndex(item => item.product.id === productId);
       this.cartItems.splice(index, 1);
       this.updateCartItems(this.cartItems);
+      const userId = this.storageService.getUser()?.id;
+      if (userId!=null) {
+        this.cartItemService.getTotal(userId).subscribe(totalValue => {
+          this.totalCartValue = totalValue;
+          
+        });
+      }
     });
   }
 
   updateCartItems(newItems: CartItem[]): void {
     this.cartItems = newItems;
+    const userId = this.storageService.getUser()?.id;
+    if (userId!=null) {
+      this.cartItemService.getTotal(userId).subscribe(totalValue => {
+        this.totalCartValue = totalValue;
+        console.log("totale",this.totalCartValue)
+        
+      });
+    }
   }
 }
