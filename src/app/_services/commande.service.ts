@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { Commande } from '../model/commande'; 
+import { CartitemService } from './cartitem.service';
+import { CartItem } from '../model/cartitem';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ import { Commande } from '../model/commande';
 export class CommandeService {
   private readonly API_URL = 'http://localhost:8080/api/auth/commande';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private cartService:CartitemService) {}
 
   getAllCommandes(userId: number): Observable<Commande[]> {
     return this.http.get<Commande[]>(`${this.API_URL}?userId=${userId}`);
@@ -19,11 +21,32 @@ export class CommandeService {
     return this.http.get<Commande>(`${this.API_URL}/${id}?userId=${userId}`);
   }
 
-  createCommande(commande: Commande, userId: any): Observable<Commande> {
-    console.log("mlkjd");
-    const params = new HttpParams().set('userId', userId);
-    return this.http.post<Commande>(`${this.API_URL}`, commande, { params });
-}
+  createCommande(commande: Commande, userId: any, cartId: any): Observable<Commande> {
+    const commandeData = {
+      cart_id: cartId,
+      user_id: userId,
+      
+      items: commande.cart,
+      adresse: commande.adresse,
+      numero:commande.numero,
+      pays:commande.pays,
+      zip:commande.zip,
+      ville:commande.ville,
+      statutCommande: commande.statutCommande
+    };
+    console.log(commandeData)
+    return this.http.post<Commande>(`${this.API_URL}/commande/${cartId}?userId=${userId}`, commandeData);
+  }
+  
+
+  
+  
+  
+
+  
+  
+
+  
 
 
 

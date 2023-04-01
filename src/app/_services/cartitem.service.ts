@@ -46,5 +46,11 @@ export class CartitemService {
     return throwError(
       'Something bad happened; please try again later.');
   }
+  getCartItemsByCartId(cartId: any): Observable<CartItem[]> {
+    return this.http.get<CartItem[]>(`${this.cartUrl}/items?cartId=${cartId}`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
   
 }

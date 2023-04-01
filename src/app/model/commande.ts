@@ -6,10 +6,14 @@ export class Commande {
   ville!: string;
   pays!: string;
   numero!: string;
-  user!: {
-    id: number;
+  user: {
+    id: any;
     nom: string;
     email: string;
+  }= {
+    id: 0,
+    nom: "",
+    email: ""
   };
   zip!: string;
   cart!: {
@@ -21,8 +25,8 @@ export class Commande {
       image: string;
     };
     quantity: number;
-    totale:any;
-  };
+    totale: any;
+  }[];
   typeDePayment!: string;
   statutCommande!: boolean;
 }
